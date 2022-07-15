@@ -6,7 +6,7 @@ data class WinningChecker(
 ) {
 
     fun checking(lottoNumbers: List<List<Int>>): MutableMap<Int, Int> {
-        lottoNumbers.stream().forEach(::matchToCount)
+        lottoNumbers.forEach(::matchToCount)
         return countMap
     }
 

@@ -1,18 +1,15 @@
 package controller
 
-import domain.Formatter
-import domain.Money
-import domain.Store
-import domain.WinningChecker
+import domain.*
 import view.InputUI
 import view.OutputUI
 
 class LottoController {
 
-    private var money: Money = Money("0")
+    private var money: Money = Money()
     private var lottoNumbers: List<List<Int>> = ArrayList()
     private var winningNumbers: List<Int> = ArrayList()
-
+    private var countMap: MutableMap<Int, Int> = mutableMapOf()
 
     fun start() {
         try {
@@ -25,6 +22,7 @@ class LottoController {
 
             // 3. 결과 출력
             this.outputResult()
+            this.outputYields()
         } catch (e: Exception) {
             OutputUI.printErrorMsg(e.message.toString())
             this.start()
@@ -32,7 +30,7 @@ class LottoController {
     }
 
     private fun outputLottoNumbers() {
-        lottoNumbers = Store.buy(money.toLong)
+        lottoNumbers = LottoStore.buy(money.toLong)
         OutputUI.printLottoNumbers(lottoNumbers)
         OutputUI.printEmpty()
     }
@@ -53,7 +51,14 @@ class LottoController {
         OutputUI.printWinningStatistics()
         OutputUI.printDash()
         val winningChecker = WinningChecker(this.winningNumbers)
-        OutputUI.printResult(winningChecker.checking(lottoNumbers))
+        countMap = winningChecker.checking(lottoNumbers)
+        OutputUI.printResult(countMap)
+    }
+
+    private fun outputYields() {
+        val yields = Yields(money.toLong, countMap)
+        val calculatedYields = yields.calculateYields()
+        OutputUI.printYields(calculatedYields)
     }
 
 }

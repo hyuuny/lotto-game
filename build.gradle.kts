@@ -13,8 +13,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("org.junit.jupiter:junit-jupiter:5.8.1")
-    testImplementation("org.assertj:assertj-core:3.23.1")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    testImplementation("io.kotest:kotest-runner-junit5:5.0.3")
 }
 
 tasks.test {

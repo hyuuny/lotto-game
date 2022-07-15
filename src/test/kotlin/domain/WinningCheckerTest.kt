@@ -1,6 +1,6 @@
 package domain
 
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
 class WinningCheckerTest {
@@ -22,12 +22,13 @@ class WinningCheckerTest {
 
                 matchMap[length] = matchMap[length]!! + 1
             }
-        assertThat(matchMap[1]).isEqualTo(1)
-        assertThat(matchMap[2]).isEqualTo(1)
-        assertThat(matchMap[3]).isEqualTo(1)
-        assertThat(matchMap[4]).isEqualTo(0)
-        assertThat(matchMap[5]).isEqualTo(0)
-        assertThat(matchMap[6]).isEqualTo(0)
+        
+        matchMap[1] shouldBe 1
+        matchMap[2] shouldBe 1
+        matchMap[3] shouldBe 1
+        matchMap[4] shouldBe 0
+        matchMap[5] shouldBe 0
+        matchMap[6] shouldBe 0
     }
 
 }

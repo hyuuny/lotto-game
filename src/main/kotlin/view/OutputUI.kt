@@ -24,6 +24,8 @@ class OutputUI {
 
         fun printErrorMsg(message: String) = println(message + "\n")
 
+        fun printYields(yields: String) = println("총 수익률은 ${yields}입니다.")
+
         fun printResult(mutableMap: MutableMap<Int, Int>) {
             this.printThree(mutableMap[3])
             this.printFour(mutableMap[4])
@@ -38,6 +40,8 @@ class OutputUI {
         private fun printFive(count: Int?) = println(MSG_FIVE + "$count" + MSG_EX)
 
         private fun printSix(count: Int?) = println(MSG_Six + "$count" + MSG_EX)
+
+
     }
 
 }
